@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../organisms/booking_card.dart';
-import '../molecules/special_offer_card.dart';
+import '../molecules/home/special_offer_card.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});

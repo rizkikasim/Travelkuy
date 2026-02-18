@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../atoms/booking_input_field.dart';
+import '../atoms/form/booking_input_field.dart';
 import '../atoms/primary_button.dart';
-import '../molecules/trip_type_selector.dart';
+import '../molecules/home/trip_type_selector.dart';
 import '../pages/ticket/search_result_page.dart'; // Pastikan import ini ada
 
 class BookingCard extends StatelessWidget {

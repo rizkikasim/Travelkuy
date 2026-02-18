@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../pages/ticket/seat_selection_page.dart'; // Pastikan import halaman seat selection
+import '../../pages/ticket/seat_selection_page.dart'; // Pastikan import halaman seat selection
 
 class BusCard extends StatelessWidget {
   final String name;

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../../../atoms/primary_button.dart';
-import '../../../atoms/payment_method_tile.dart';
-import '../../../molecules/price_summary.dart';
+import '../../atoms/primary_button.dart';
+import '../../atoms/payment/payment_method_tile.dart';
+import '../../molecules/ticket/price_summary.dart';
 import 'e_ticket_page.dart'; 
 
 class PaymentPage extends StatefulWidget {

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../atoms/primary_button.dart';
-import '../../atoms/custom_text_field.dart';
-import '../../molecules/social_login_button.dart';
+import '../../atoms/form/custom_text_field.dart';
+import '../../molecules/auth/social_login_button.dart';
 import 'sign_up_page.dart';
 import '../home_page.dart'; 
 
