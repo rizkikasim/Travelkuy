@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import '../atoms/primary_button.dart';
-import '../atoms/payment_method_tile.dart';
-import '../molecules/price_summary.dart';
-import 'e_ticket_page.dart'; // Pastikan sudah mengimpor halaman tiket
+import '../../../atoms/primary_button.dart';
+import '../../../atoms/payment_method_tile.dart';
+import '../../../molecules/price_summary.dart';
+import 'e_ticket_page.dart'; 
 
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key});

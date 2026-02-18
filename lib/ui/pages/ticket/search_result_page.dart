@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../molecules/bus_card.dart';
+import '../../../molecules/bus_card.dart';
 
 class SearchResultPage extends StatelessWidget {
   const SearchResultPage({super.key});

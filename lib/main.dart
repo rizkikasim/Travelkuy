@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'ui/pages/onboarding_page.dart';
+import 'ui/pages/auth/onboarding_page.dart';
 
 void main() {
   runApp(const TravelKuyApp());

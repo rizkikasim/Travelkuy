@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import '../atoms/ticket_info_item.dart';
-import '../molecules/dashed_line_painter.dart';
+import '../../../atoms/ticket_info_item.dart';
+import '../../../molecules/dashed_line_painter.dart';
 
 class ETicketPage extends StatelessWidget {
   const ETicketPage({super.key});

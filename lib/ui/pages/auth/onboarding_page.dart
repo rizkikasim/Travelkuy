@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../atoms/primary_button.dart';
-import '../molecules/dot_indicator.dart';
-import '../molecules/onboarding_content.dart';
+import '../../atoms/primary_button.dart';
+import '../../molecules/dot_indicator.dart';
+import '../../molecules/onboarding_content.dart';
 import 'login_page.dart'; // Pastikan file login_page.dart sudah ada di folder yang sama
 
 class OnboardingPage extends StatefulWidget {

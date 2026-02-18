@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import '../atoms/seat_item.dart';
-import '../atoms/primary_button.dart';
-import '../molecules/seat_legend.dart';
+import '../../../atoms/seat_item.dart';
+import '../../../atoms/primary_button.dart';
+import '../../../molecules/seat_legend.dart';
 import 'payment_page.dart'; // Pastikan file payment_page.dart sudah dibuat
 
 class SeatSelectionPage extends StatefulWidget {
