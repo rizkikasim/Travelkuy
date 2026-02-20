@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import '../../atoms/ticket/seat_item.dart';
-import '../../atoms/ticket/primary_button.dart'; // Sesuaikan path jika bergeser
+import '../../atoms/primary_button.dart';
 import '../../molecules/ticket/seat_legend.dart';
-// Gunakan salah satu saja, saya sarankan package import agar lebih stabil
-import 'package:travelkuy/ui/pages/payment/payment_page.dart';
+import '../payment/payment_page.dart'; 
 
 class SeatSelectionPage extends StatefulWidget {
   const SeatSelectionPage({super.key});
@@ -68,18 +67,20 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
             child: GridView.builder(
               padding: const EdgeInsets.symmetric(horizontal: 30),
               gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 4,
+                crossAxisCount: 4, // 2 kursi kiri, 2 kursi kanan
                 mainAxisSpacing: 15,
                 crossAxisSpacing: 15,
                 childAspectRatio: 1,
               ),
-              itemCount: 28,
+              itemCount: 28, // Contoh 7 baris x 4 kursi
               itemBuilder: (context, index) {
+                // Logika penamaan kursi (1A, 1B, 1C, 1D)
                 int row = (index ~/ 4) + 1;
                 int colIndex = index % 4;
                 String colLabel = String.fromCharCode(65 + colIndex);
                 String seatId = "$row$colLabel";
 
+                // Penentuan status kursi berdasarkan ID (Mockup data)
                 SeatStatus status = SeatStatus.avail;
                 if (selectedSeats.contains(seatId)) {
                   status = SeatStatus.selected;
@@ -97,6 +98,7 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
                       if (selectedSeats.contains(seatId)) {
                         selectedSeats.remove(seatId);
                       } else {
+                        // Membatasi pilihan agar tidak memilih kursi yang sudah dibooking
                         selectedSeats.add(seatId);
                       }
                     });
@@ -105,6 +107,7 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
               },
             ),
           ),
+          // Bottom Summary Section
           _buildBottomSummary(),
         ],
       ),
@@ -121,7 +124,7 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
           BoxShadow(
             color: Colors.black.withOpacity(0.05),
             blurRadius: 20,
-            offset: const Offset(0, -5),
+            offset: const Offset(0, -5), // Bayangan ke arah atas
           )
         ],
       ),
@@ -143,25 +146,23 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
                   ),
                   const SizedBox(height: 8),
                   Row(
-                    children: selectedSeats.isEmpty
-                        ? [const Text("-", style: TextStyle(color: Colors.grey))]
-                        : selectedSeats
-                            .map((s) => Container(
-                                  margin: const EdgeInsets.only(right: 8),
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 12, vertical: 6),
-                                  decoration: BoxDecoration(
-                                      color: const Color(0xFFE0F2F1),
-                                      borderRadius: BorderRadius.circular(10)),
-                                  child: Text(
-                                    "Seat $s",
-                                    style: const TextStyle(
-                                        color: Color(0xFF0D9488),
-                                        fontSize: 12,
-                                        fontWeight: FontWeight.bold),
-                                  ),
-                                ))
-                            .toList(),
+                    children: selectedSeats.isEmpty 
+                    ? [const Text("-", style: TextStyle(color: Colors.grey))]
+                    : selectedSeats.map((s) => Container(
+                          margin: const EdgeInsets.only(right: 8),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 12, vertical: 6),
+                          decoration: BoxDecoration(
+                              color: const Color(0xFFE0F2F1),
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Text(
+                            "Seat $s",
+                            style: const TextStyle(
+                                color: Color(0xFF0D9488),
+                                fontSize: 12,
+                                fontWeight: FontWeight.bold),
+                          ),
+                        )).toList(),
                   ),
                 ],
               ),
@@ -177,7 +178,8 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
                   ),
                   const SizedBox(height: 4),
                   Text(
-                    "Rp ${selectedSeats.length * 150000}",
+                    // Simulasi harga dikali jumlah kursi
+                    "Rp ${selectedSeats.length * 150000}", 
                     style: const TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -191,11 +193,11 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
           PrimaryButton(
             label: "Continue to Payment →",
             onPressed: () {
+              // Navigasi ke Halaman Pembayaran
               if (selectedSeats.isNotEmpty) {
                 Navigator.push(
                   context,
-                  // BAGIAN FIX: Hapus keyword 'const' di depan PaymentPage()
-                  MaterialPageRoute(builder: (context) => PaymentPage()),
+                  MaterialPageRoute(builder: (context) => const PaymentPage()),
                 );
               } else {
                 ScaffoldMessenger.of(context).showSnackBar(

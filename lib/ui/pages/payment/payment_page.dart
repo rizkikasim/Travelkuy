@@ -1,103 +1,270 @@
 import 'package:flutter/material.dart';
-import 'package:travelkuy/ui/atoms/ticket/ticket_info_item.dart';
-import 'package:travelkuy/ui/atoms/primary_button.dart';
-import 'package:travelkuy/ui/molecules/ticket/dashed_line_painter.dart';
+import '../../atoms/primary_button.dart';
+import '../../atoms/payment/payment_method_tile.dart';
+import '../../molecules/payment/price_summary.dart';
+import '../ticket/e_ticket_page.dart'; 
+// Tambahkan import halaman sukses
+import 'success_payment_page.dart';
 
-class ETicketPage extends StatelessWidget {
-  const ETicketPage({super.key});
+class PaymentPage extends StatefulWidget {
+  const PaymentPage({super.key});
+
+  @override
+  State<PaymentPage> createState() => _PaymentPageState();
+}
+
+class _PaymentPageState extends State<PaymentPage> {
+  // State untuk melacak metode pembayaran yang dipilih
+  String selectedMethod = 'GoPay';
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xFFF8FAFC),
+      backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
+        backgroundColor: Colors.white,
         elevation: 0,
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios_new, color: Colors.black, size: 20),
           onPressed: () => Navigator.pop(context),
         ),
         title: const Text(
-          "Your E-Ticket", 
-          style: TextStyle(color: Color(0xFF1E293B), fontWeight: FontWeight.bold)
+          "Secure Checkout",
+          style: TextStyle(color: Color(0xFF1E293B), fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(24),
+        padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // 1. Trip Summary Card
             Container(
+              padding: const EdgeInsets.all(16),
               decoration: BoxDecoration(
-                color: Colors.white,
-                borderRadius: BorderRadius.circular(24),
+                color: const Color(0xFFE0F2F1),
+                borderRadius: BorderRadius.circular(20),
               ),
-              child: Column(
+              child: Row(
                 children: [
-                  // Info Perjalanan
-                  Padding(
-                    padding: const EdgeInsets.all(24),
+                  Expanded(
                     child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            const Text("TravelKuy", style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
-                            Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 6),
-                              decoration: BoxDecoration(color: const Color(0xFFCCFBF1), borderRadius: BorderRadius.circular(20)),
-                              child: const Text("ACTIVE", style: TextStyle(color: Color(0xFF0D9488), fontSize: 10, fontWeight: FontWeight.bold)),
-                            ),
-                          ],
+                        const Text(
+                          "TRIP SUMMARY",
+                          style: TextStyle(
+                            fontSize: 10,
+                            fontWeight: FontWeight.bold,
+                            color: Color(0xFF0D9488),
+                          ),
                         ),
-                        const SizedBox(height: 32),
-                        const Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            TicketInfoItem(label: "Passenger", value: "Nova Aulia"),
-                            TicketInfoItem(label: "Seat", value: "12A", alignment: CrossAxisAlignment.end),
+                        const SizedBox(height: 8),
+                        const Text(
+                          "Jakarta to Bandung",
+                          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                        ),
+                        const Text(
+                          "Arrives Oct 24, 2023 • 09:00 AM",
+                          style: TextStyle(color: Colors.grey, fontSize: 12),
+                        ),
+                        const SizedBox(height: 12),
+                        Row(
+                          children: const [
+                            Icon(Icons.person_outline, size: 14, color: Color(0xFF0D9488)),
+                            SizedBox(width: 4),
+                            Text(
+                              "1 Passenger (Seat 12A)",
+                              style: TextStyle(fontSize: 12, fontWeight: FontWeight.w600),
+                            ),
                           ],
                         ),
                       ],
                     ),
                   ),
-                  
-                  // Garis Putus-putus
-                  CustomPaint(size: const Size(double.infinity, 1), painter: DashedLinePainter()),
-                  
-                  // QR Code Section
-                  Padding(
-                    padding: const EdgeInsets.all(24),
-                    child: Column(
-                      children: [
-                        Container(
-                          padding: const EdgeInsets.all(16),
-                          decoration: BoxDecoration(color: const Color(0xFFF1F5F9), borderRadius: BorderRadius.circular(20)),
-                          child: Image.network(
-                            "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=TravelKuy-Nova",
-                            height: 150,
-                          ),
+                  const Icon(Icons.directions_bus, size: 40, color: Color(0xFF0D9488)),
+                ],
+              ),
+            ),
+            const SizedBox(height: 32),
+
+            // 2. Express Checkout
+            const Text(
+              "Express Checkout",
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueGrey, fontSize: 11),
+            ),
+            const SizedBox(height: 12),
+            GestureDetector(
+              onTap: () {
+                // Logika Express Pay
+              },
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                decoration: BoxDecoration(
+                  color: Colors.black,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: const [
+                    Icon(Icons.phone_iphone, color: Colors.white, size: 18),
+                    SizedBox(width: 8),
+                    Text("Pay", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 32),
+
+            // 3. Other Payment Methods
+            const Text(
+              "Other Payment Methods",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
+            ),
+            const SizedBox(height: 16),
+            const Text(
+              "DIGITAL WALLETS",
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueGrey, fontSize: 10),
+            ),
+            const SizedBox(height: 12),
+            PaymentMethodTile(
+              label: "GoPay",
+              icon: Image.network(
+                "https://api.iconify.design/logos:gopay.svg", 
+                width: 20, 
+                errorBuilder: (c, e, s) => const Icon(Icons.wallet, size: 20, color: Colors.blue),
+              ),
+              isSelected: selectedMethod == 'GoPay',
+              onTap: () => setState(() => selectedMethod = 'GoPay'),
+            ),
+            PaymentMethodTile(
+              label: "OVO",
+              icon: const Icon(Icons.wallet, color: Colors.deepPurple, size: 20),
+              isSelected: selectedMethod == 'OVO',
+              onTap: () => setState(() => selectedMethod = 'OVO'),
+            ),
+
+            const SizedBox(height: 16),
+            const Text(
+              "VIRTUAL ACCOUNT",
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueGrey, fontSize: 10),
+            ),
+            const SizedBox(height: 12),
+            PaymentMethodTile(
+              label: "BCA Virtual Account",
+              icon: const Icon(Icons.account_balance, size: 18, color: Color(0xFF0D9488)),
+              isSelected: selectedMethod == 'BCA',
+              onTap: () => setState(() => selectedMethod = 'BCA'),
+            ),
+
+            const SizedBox(height: 16),
+            Row(
+              children: [
+                Expanded(
+                  child: _buildGridPaymentItem(Icons.credit_card, "Credit Card"),
+                ),
+                const SizedBox(width: 16),
+                Expanded(
+                  child: _buildGridPaymentItem(Icons.qr_code_scanner, "QRIS"),
+                ),
+              ],
+            ),
+
+            const SizedBox(height: 32),
+            // 5. Promo Code Section
+            const Text(
+              "PROMO CODE",
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.blueGrey, fontSize: 10),
+            ),
+            const SizedBox(height: 12),
+            Container(
+              padding: const EdgeInsets.all(6),
+              decoration: BoxDecoration(
+                color: const Color(0xFFF8FAFC),
+                borderRadius: BorderRadius.circular(16),
+                border: Border.all(color: const Color(0xFFE2E8F0)),
+              ),
+              child: Row(
+                children: [
+                  const Expanded(
+                    child: Padding(
+                      padding: EdgeInsets.only(left: 12),
+                      child: TextField(
+                        decoration: InputDecoration(
+                          hintText: "Enter promo code",
+                          border: InputBorder.none,
+                          hintStyle: TextStyle(fontSize: 14),
                         ),
-                        const SizedBox(height: 16),
-                        const Text("TK-2026-X12B", style: TextStyle(color: Colors.grey, fontSize: 12, letterSpacing: 2)),
-                      ],
+                      ),
                     ),
+                  ),
+                  ElevatedButton(
+                    onPressed: () {},
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF0D9488),
+                      elevation: 0,
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
+                    ),
+                    child: const Text("Apply", style: TextStyle(color: Colors.white)),
                   ),
                 ],
               ),
             ),
             const SizedBox(height: 32),
-            
-            // Tombol Selesai untuk kembali ke Beranda
+
+            // 6. Final Summary
+            const PriceSummary(),
+            const SizedBox(height: 40),
+
+            // ACTION: Diarahkan ke Halaman Sukses
             PrimaryButton(
-              label: "Done",
+              label: "Pay Now",
               onPressed: () {
-                // Menghapus semua history navigasi dan kembali ke halaman pertama (Home)
-                Navigator.of(context).popUntil((route) => route.isFirst);
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const SuccessPaymentPage()),
+                );
               },
             ),
+            const SizedBox(height: 24),
+            
+            // Security Info
+            const Center(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(Icons.lock_outline, size: 14, color: Colors.grey),
+                  SizedBox(width: 4),
+                  Text(
+                    "SSL ENCRYPTED & SECURE",
+                    style: TextStyle(fontSize: 10, color: Colors.grey, fontWeight: FontWeight.bold),
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 40),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget _buildGridPaymentItem(IconData icon, String label) {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 16),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF8FAFC),
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: const Color(0xFFE2E8F0)),
+      ),
+      child: Column(
+        children: [
+          Icon(icon, color: const Color(0xFF0D9488)),
+          const SizedBox(height: 8),
+          Text(label, style: const TextStyle(fontSize: 12, fontWeight: FontWeight.w600)),
+        ],
       ),
     );
   }
