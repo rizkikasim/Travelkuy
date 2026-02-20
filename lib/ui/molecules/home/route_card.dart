@@ -1,17 +1,16 @@
-// lib/ui/molecules/route_card.dart
 import 'package:flutter/material.dart';
 
 class RouteCard extends StatelessWidget {
-  final String title;
+  final String routeName;
   final String price;
-  final String imagePath;
+  final String imageUrl;
   final bool isTopChoice;
 
   const RouteCard({
     super.key,
-    required this.title,
+    required this.routeName,
     required this.price,
-    required this.imagePath,
+    required this.imageUrl,
     this.isTopChoice = false,
   });
 
@@ -21,32 +20,44 @@ class RouteCard extends StatelessWidget {
       decoration: BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(24),
-        border: Border.all(color: const Color(0xFFF1F5F9)),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.05),
+            blurRadius: 10,
+            offset: const Offset(0, 5),
+          ),
+        ],
       ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           // Bagian Gambar
           Expanded(
+            flex: 3,
             child: Stack(
               children: [
-                Container(
-                  decoration: BoxDecoration(
-                    borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
-                    image: DecorationImage(
-                      image: AssetImage(imagePath),
-                      fit: BoxFit.cover,
+                ClipRRect(
+                  borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
+                  child: Image.asset(
+                    imageUrl,
+                    width: double.infinity,
+                    height: double.infinity,
+                    fit: BoxFit.cover,
+                    // Penanganan jika gambar tidak ditemukan
+                    errorBuilder: (context, error, stackTrace) => Container(
+                      color: Colors.grey[200],
+                      child: const Icon(Icons.broken_image, color: Colors.grey),
                     ),
                   ),
                 ),
                 if (isTopChoice)
                   Positioned(
                     top: 10,
-                    left: 10,
+                    right: 10,
                     child: Container(
                       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
                       decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.9),
+                        color: const Color(0xFFCCFBF1),
                         borderRadius: BorderRadius.circular(12),
                       ),
                       child: const Text(
@@ -63,32 +74,42 @@ class RouteCard extends StatelessWidget {
             ),
           ),
           // Bagian Teks
-          Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 14),
-                ),
-                const SizedBox(height: 4),
-                RichText(
-                  text: TextSpan(
-                    text: 'Start from ',
-                    style: const TextStyle(color: Colors.grey, fontSize: 11),
-                    children: [
-                      TextSpan(
-                        text: price,
-                        style: const TextStyle(
-                          color: Color(0xFF0D9488),
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ],
+          Expanded(
+            flex: 2,
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(
+                    routeName,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: const TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 14,
+                      color: Color(0xFF1E293B),
+                    ),
                   ),
-                ),
-              ],
+                  const SizedBox(height: 4),
+                  RichText(
+                    text: TextSpan(
+                      text: "Start from ",
+                      style: const TextStyle(color: Colors.grey, fontSize: 11),
+                      children: [
+                        TextSpan(
+                          text: price,
+                          style: const TextStyle(
+                            color: Color(0xFF0D9488),
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ],

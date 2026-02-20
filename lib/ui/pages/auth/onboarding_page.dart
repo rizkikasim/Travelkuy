@@ -24,19 +24,19 @@ class _OnboardingPageState extends State<OnboardingPage> {
       "title": "Travel with",
       "high": "Easy Booking",
       "desc": "Experience seamless bus bookings with premium amenities and real-time tracking at your fingertips.",
-      "img": "assets/images/ob1.png"
+      "img": "assets/images/onboarding/ob1.png"
     },
     {
       "title": "Explore the",
       "high": "New World",
       "desc": "Find the best destinations and exclusive deals for your next adventure with TravelKuy.",
-      "img": "assets/images/ob2.png"
+      "img": "assets/images/onboarding/ob2.png"
     },
     {
       "title": "Travel with",
       "high": "Comfort",
       "desc": "Your safety and comfort are our priority. Enjoy premium services throughout your journey.",
-      "img": "assets/images/ob3.png"
+      "img": "assets/images/onboarding/ob3.png"
     },
   ];
 

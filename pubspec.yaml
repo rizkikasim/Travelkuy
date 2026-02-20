@@ -22,8 +22,13 @@ flutter:
 
   # Folder assets yang sudah disesuaikan
   assets:
-    - assets/images/ob1.jpg
-    - assets/images/ob2.png
-    - assets/images/ob3.png
+    - assets/images/onboarding/ob1.jpg
+    - assets/images/onboarding/ob2.png
+    - assets/images/onboarding/ob3.png
+    - assets/images/special_offer/Bus.png
+    - assets/images/route/Beach.png
+    - assets/images/route/Cityscape.png
+    - assets/images/route/Landscape.png
+    - assets/images/route/Nature.png
+    
 
- 
