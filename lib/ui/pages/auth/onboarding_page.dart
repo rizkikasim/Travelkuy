@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../atoms/primary_button.dart';
 import '../../molecules/auth/dot_indicator.dart';
 import '../../molecules/auth/onboarding_content.dart';
-import 'login_page.dart'; // Pastikan file login_page.dart sudah ada di folder yang sama
+import 'login_page.dart';
 
 class OnboardingPage extends StatefulWidget {
   const OnboardingPage({super.key});
@@ -12,31 +12,27 @@ class OnboardingPage extends StatefulWidget {
 }
 
 class _OnboardingPageState extends State<OnboardingPage> {
-  // Controller untuk mengatur pergerakan halaman slider
   final PageController _pageController = PageController();
-  
-  // Index halaman saat ini
   int _currentIndex = 0;
 
-  // Data konten onboarding (bisa dipindah ke core/constants nantinya)
   final List<Map<String, String>> _data = [
     {
       "title": "Travel with",
       "high": "Easy Booking",
       "desc": "Experience seamless bus bookings with premium amenities and real-time tracking at your fingertips.",
-      "img": "assets/images/onboarding/ob1.png"
+      "img": "assets/images/onboarding/ob4.png"
     },
     {
       "title": "Explore the",
       "high": "New World",
       "desc": "Find the best destinations and exclusive deals for your next adventure with TravelKuy.",
-      "img": "assets/images/onboarding/ob2.png"
+      "img": "assets/images/onboarding/ob5.png"
     },
     {
       "title": "Travel with",
       "high": "Comfort",
       "desc": "Your safety and comfort are our priority. Enjoy premium services throughout your journey.",
-      "img": "assets/images/onboarding/ob3.png"
+      "img": "assets/images/onboarding/ob6.jpg"
     },
   ];
 
@@ -50,7 +46,6 @@ class _OnboardingPageState extends State<OnboardingPage> {
         actions: [
           TextButton(
             onPressed: () {
-              // Jika tekan Skip, langsung lompat ke halaman terakhir atau Login
               Navigator.pushReplacement(
                 context,
                 MaterialPageRoute(builder: (context) => const LoginPage()),
@@ -72,8 +67,9 @@ class _OnboardingPageState extends State<OnboardingPage> {
         padding: const EdgeInsets.symmetric(horizontal: 24),
         child: Column(
           children: [
-            // Area Slider Gambar dan Teks
+            // 1. Area Gambar (Setengah layar atas)
             Expanded(
+              flex: 3,
               child: PageView.builder(
                 controller: _pageController,
                 onPageChanged: (v) => setState(() => _currentIndex = v),
@@ -87,7 +83,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               ),
             ),
             
-            // Indikator Titik (Dot Indicator)
+            // 2. Indikator Titik (Dot Indicator) - Posisi sesuai gambar (di atas teks)
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: List.generate(
@@ -98,19 +94,16 @@ class _OnboardingPageState extends State<OnboardingPage> {
             
             const SizedBox(height: 32),
             
-            // Tombol Aksi Utama
+            // 3. Tombol Aksi Utama (Get Started / Next Step)
             PrimaryButton(
               label: _currentIndex == 2 ? "Get Started" : "Next Step →",
               onPressed: () {
                 if (_currentIndex < 2) {
-                  // Pindah ke slide berikutnya dengan animasi smooth
                   _pageController.nextPage(
                     duration: const Duration(milliseconds: 400), 
                     curve: Curves.easeInOut,
                   );
                 } else {
-                  // Jika di slide terakhir, pindah ke halaman Login
-                  // Menggunakan pushReplacement agar user tidak bisa balik ke onboarding lagi
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(builder: (context) => const LoginPage()),
@@ -119,7 +112,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
               },
             ),
             
-            const SizedBox(height: 40),
+            const SizedBox(height: 50), // Margin bawah agar tidak terlalu mepet bar navigasi HP
           ],
         ),
       ),

@@ -15,17 +15,24 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
-  flutter_lints: ^3.0.0 # Versi disesuaikan dengan SDK
+  flutter_lints: ^3.0.0 
 
 flutter:
   uses-material-design: true
 
   # Folder assets yang sudah disesuaikan
   assets:
+  #onboarding
     - assets/images/onboarding/ob1.jpg
     - assets/images/onboarding/ob2.png
     - assets/images/onboarding/ob3.png
+    - assets/images/onboarding/ob4.png
+    - assets/images/onboarding/ob5.png
+    - assets/images/onboarding/ob6.jpg
+  #special offer
     - assets/images/special_offer/Bus.png
+    
+    # route
     - assets/images/route/Beach.png
     - assets/images/route/Cityscape.png
     - assets/images/route/Landscape.png

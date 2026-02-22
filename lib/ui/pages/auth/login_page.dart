@@ -17,19 +17,19 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  // 2. Fungsi logika login sederhana
+  
   void _handleLogin() {
     String email = _emailController.text.trim();
     String password = _passwordController.text.trim();
 
-    // Validasi dummy (Gunakan akun: nova@travelkuy.com / password123)
+    
     if (email == "nova@travelkuy.com" && password == "password123") {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(builder: (context) => const HomePage()),
       );
     } else {
-      // Tampilkan pesan error jika salah
+      
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text("Email atau Password salah!"),
@@ -41,7 +41,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   void dispose() {
-    // Bersihkan controller saat widget dihapus dari memori
+
     _emailController.dispose();
     _passwordController.dispose();
     super.dispose();
