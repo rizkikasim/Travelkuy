@@ -211,3 +211,5 @@ class _SeatSelectionPageState extends State<SeatSelectionPage> {
     );
   }
 }
+
+// Enum untuk status kursi

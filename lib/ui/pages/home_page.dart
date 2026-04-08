@@ -153,10 +153,10 @@ class HomeContent extends StatelessWidget {
         ),
         Stack(
           children: [
-            CircleAvatar(
+            const CircleAvatar(
               radius: 25,
-              backgroundColor: const Color(0xFFCCFBF1), // Teal shade
-              child: const Icon(Icons.person, color: Color(0xFF0D9488)),
+              backgroundColor: Color(0xFFCCFBF1), // Teal shade
+              child: Icon(Icons.person, color: Color(0xFF0D9488)),
             ),
             Positioned(
               right: 0,

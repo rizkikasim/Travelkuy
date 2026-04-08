@@ -12,11 +12,11 @@ class PriceSummary extends StatelessWidget {
         _buildRow("Service Tax (11%)", "Rp 13.200"),
         _buildRow("Promo Discount", "- Rp 0", color: const Color(0xFF0D9488)),
         const Divider(height: 32),
-        Row(
+        const Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            const Text("Total Amount", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
-            const Text("Rp 133.200", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF0D9488))),
+            Text("Total Amount", style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            Text("Rp 133.200", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold, color: Color(0xFF0D9488))),
           ],
         ),
       ],

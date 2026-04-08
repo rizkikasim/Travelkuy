@@ -46,13 +46,13 @@ class _PaymentPageState extends State<PaymentPage> {
                 color: const Color(0xFFE0F2F1),
                 borderRadius: BorderRadius.circular(20),
               ),
-              child: Row(
+              child: const Row(
                 children: [
                   Expanded(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
+                        Text(
                           "TRIP SUMMARY",
                           style: TextStyle(
                             fontSize: 10,
@@ -60,18 +60,18 @@ class _PaymentPageState extends State<PaymentPage> {
                             color: Color(0xFF0D9488),
                           ),
                         ),
-                        const SizedBox(height: 8),
-                        const Text(
+                        SizedBox(height: 8),
+                        Text(
                           "Jakarta to Bandung",
                           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                         ),
-                        const Text(
+                        Text(
                           "Arrives Oct 24, 2023 • 09:00 AM",
                           style: TextStyle(color: Colors.grey, fontSize: 12),
                         ),
-                        const SizedBox(height: 12),
+                        SizedBox(height: 12),
                         Row(
-                          children: const [
+                          children: [
                             Icon(Icons.person_outline, size: 14, color: Color(0xFF0D9488)),
                             SizedBox(width: 4),
                             Text(
@@ -83,7 +83,7 @@ class _PaymentPageState extends State<PaymentPage> {
                       ],
                     ),
                   ),
-                  const Icon(Icons.directions_bus, size: 40, color: Color(0xFF0D9488)),
+                  Icon(Icons.directions_bus, size: 40, color: Color(0xFF0D9488)),
                 ],
               ),
             ),
@@ -106,9 +106,9 @@ class _PaymentPageState extends State<PaymentPage> {
                   color: Colors.black,
                   borderRadius: BorderRadius.circular(30),
                 ),
-                child: Row(
+                child: const Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: const [
+                  children: [
                     Icon(Icons.phone_iphone, color: Colors.white, size: 18),
                     SizedBox(width: 8),
                     Text("Pay", style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 16)),

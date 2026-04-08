@@ -45,8 +45,8 @@ class SuccessPaymentPage extends StatelessWidget {
                   borderRadius: BorderRadius.circular(20),
                   border: Border.all(color: const Color(0xFFE2E8F0)),
                 ),
-                child: Column(
-                  children: const [
+                child: const Column(
+                  children: [
                     PaymentDetailRow(label: "Transaction ID", value: "TRK-99210B"),
                     PaymentDetailRow(label: "Amount Paid", value: "Rp 133.200"),
                     PaymentDetailRow(label: "Payment Method", value: "GoPay"),
