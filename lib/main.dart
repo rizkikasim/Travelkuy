@@ -26,5 +26,7 @@ class TravelKuyApp extends StatelessWidget {
       // Menentukan halaman awal
       home: const OnboardingPage(),
     );
+    // Dengan pengaturan tema global, semua widget dalam aplikasi akan mengikuti gaya yang konsisten, sehingga memudahkan dalam pengembangan dan pemeliharaan UI.
+    // Penggunaan OnboardingPage sebagai halaman awal memberikan pengalaman pengguna yang menarik dan informatif saat pertama kali membuka aplikasi, membantu mereka memahami fitur utama TravelKuy dengan cepat.
   }
 }
